@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\VerifyUserJobs;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use JWTAuth;
 
 class AuthController extends Controller
@@ -59,9 +61,12 @@ class AuthController extends Controller
 
         $user = User::create(array_merge(
                     $validator->validated(),
-                    ['password' => bcrypt($request->password)]
+                    ['password' => bcrypt($request->password),'slug'=>Str::random(15),'token'=>Str::random(20),'status'=>'active']
                 ));
-
+        if($user){
+            $details = ['name'=>$user->name, 'email'=>$user->email,'token'=>$user->token];
+            dispatch(new VerifyUserJobs($details));
+        }
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
