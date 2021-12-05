@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\VerifyUserJobs;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use JWTAuth;
@@ -18,7 +19,7 @@ class AuthController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register','accountVerify']]);
     }
 
     /**
@@ -64,7 +65,7 @@ class AuthController extends Controller
                     ['password' => bcrypt($request->password),'slug'=>Str::random(15),'token'=>Str::random(20),'status'=>'active']
                 ));
         if($user){
-            $details = ['name'=>$user->name, 'email'=>$user->email,'token'=>$user->token];
+            $details = ['name'=>$user->name, 'email'=>$user->email,'hashEmail'=>Crypt::encryptString($user->email),'token'=>$user->token];
             dispatch(new VerifyUserJobs($details));
         }
         return response()->json([
@@ -72,6 +73,24 @@ class AuthController extends Controller
             'user' => $user
         ], 201);
     }
+
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function accountVerify($token,$email) {
+        $user = User::where([['email',Crypt::decryptString($email)],['token',$token]])->first();
+        if($user->token == $token){
+            $user->update([
+                'verify'=>true,
+                'token'=>null
+            ]);
+            return redirect()->to('http://127.0.0.1:8000/verify/success');
+        }
+        return redirect()->to('http://127.0.0.1:8000/verify/invalid_token');
+    }
+
 
 
     /**
