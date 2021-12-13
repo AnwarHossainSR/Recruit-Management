@@ -1,0 +1,55 @@
+.category {
+    background: $color-light;
+
+    &-container {
+        @include container;
+
+        &-info {
+            margin-top: 6rem;
+            text-align: center;
+            line-height: 2;
+
+            &__heading {
+                font-size: 30px;
+            }
+        }
+
+        &--card-wrapper {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-column-gap: 2rem;
+            grid-row-gap: 2rem;
+
+            &__card {
+                transition: all .3s linear;
+                border: $border-card;
+                margin-top: -1px;
+                background: $color-white;
+                padding: 20px;
+                text-align: center;
+                overflow: hidden;
+                display: block;
+                margin-right: -1px;
+                position: relative;
+                box-shadow: $boxshadow-card;
+                cursor: pointer;
+
+                img {
+                    font-size: 1.6rem;
+                    color: $color-white;
+                }
+
+                h1,
+                p {
+                    margin-top: 0.6rem;
+                    color: $color-secondary;
+                }
+
+                &:hover {
+                    box-shadow: $boxshadow-card-hover;
+                }
+            }
+        }
+    }
+}
