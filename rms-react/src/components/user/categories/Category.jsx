@@ -7,7 +7,10 @@ const Category = () => {
       <div className="category-container">
         <div className="category-container-info">
           <h1 className="category-container-info__heading">Browse Category</h1>
-          <p className="category-container-info__description"></p>
+          <p className="category-container-info__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum et
+            facere impedit reiciendis, commodi illum.
+          </p>
         </div>
         <div className="category-container--card-wrapper">
           <CategoryItem />
