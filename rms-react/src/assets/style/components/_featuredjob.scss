@@ -1,0 +1,78 @@
+.featured_job {
+    padding: 2rem 0;
+
+    .container {
+        @include container;
+
+        .featured_job-info {
+            margin-top: 6rem;
+            text-align: center;
+            line-height: 2;
+
+            h1 {
+                font-size: 30px;
+            }
+        }
+
+        .featured_job--wrapper {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1rem;
+
+            &__card {
+                transition: all .3s ease-in;
+                margin-top: -1px;
+                background: $color-white;
+                padding: 20px;
+                overflow: hidden;
+                @include flexCenter;
+                position: relative;
+                box-shadow: $box-shadow;
+                cursor: pointer;
+
+                &--left {
+                    width: 15%;
+                    padding: 10px;
+                }
+
+                &--right {
+                    width: 85%;
+                    height: auto;
+                    text-align: center;
+                    margin-left: 3rem;
+
+                    &h1 {
+                        margin-top: 1.2rem;
+                        color: $color-secondary;
+                    }
+
+                    &__status {
+                        margin-top: 1rem;
+                        text-decoration: none;
+                        font-size: 14px;
+                        display: inline-block;
+                        padding: 5px 15px;
+                        border-radius: 50px;
+                        cursor: pointer;
+                        text-transform: uppercase;
+                        background: $color-green;
+                        color: $color-white-light;
+                        font-weight: normal;
+                        transition: all .3s ease-in-out;
+                    }
+
+                }
+
+                &:hover {
+                    box-shadow: $boxshadow-card-hover;
+                    transition: box-shadow .6 linear;
+                    border-left: .3rem solid $color-green;
+                    cursor: pointer
+                }
+            }
+        }
+
+
+    }
+}
