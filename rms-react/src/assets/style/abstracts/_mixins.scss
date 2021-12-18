@@ -38,3 +38,12 @@
     transition: all .3s;
     border: 1px solid #c5bdbd;
 }
+
+@mixin card {
+    transition: all .3s ease-in;
+    margin-top: -1px;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}

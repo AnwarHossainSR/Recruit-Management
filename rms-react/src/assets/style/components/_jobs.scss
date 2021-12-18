@@ -1,0 +1,105 @@
+.job {
+    background: $color-light;
+
+    .container {
+        @include container;
+
+        .job-info {
+            margin-top: 6rem;
+            text-align: center;
+            line-height: 2;
+
+            h1 {
+                font-size: 30px;
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+
+        .job__wrapper {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px 7px;
+
+            &__card {
+                @include card;
+                border: 1px solid $border-card;
+                background: $color-white;
+                box-shadow: $box-shadow;
+                position: relative;
+
+                display: flex;
+                justify-content: space-around;
+
+                &--line {
+                    border-right: 1px solid $color-green;
+                    height: 100%;
+                }
+
+                &--left {
+                    width: 25%;
+
+                    img {
+                        width: 80%;
+                        height: 80%;
+                        padding: 10px;
+                    }
+                }
+
+                &--right {
+                    width: 75%;
+                    height: auto;
+                    text-align: start;
+                    margin-left: 3rem !important;
+                    @include flexBetween;
+
+                    h1 {
+                        margin-top: 1.2rem;
+                        color: $color-dark !important;
+                    }
+
+                    p {
+                        margin-left: .4rem;
+                    }
+
+                    a {
+                        margin-top: 1rem;
+                        font-size: 14px;
+                        display: inline-block;
+                        padding: 5px 15px;
+                        border-radius: 50px;
+                        cursor: pointer;
+                        text-transform: uppercase;
+                        background: $color-white-light;
+                        color: $color-green;
+                        font-weight: bolder;
+                        transition: all .3s ease-in-out;
+                    }
+
+                    &__part-2 {
+                        margin-top: -7rem;
+
+                        i {
+                            font-size: 2rem;
+
+                            &:hover {
+                                color: $color-danger;
+                            }
+                        }
+
+                    }
+                }
+
+                &:hover {
+                    box-shadow: 1px 8px 20px $color-secondary;
+                    transition: box-shadow .6s linear;
+                    border-left: .4rem solid $color-green;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
