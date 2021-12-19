@@ -30,7 +30,7 @@
                 background: $color-white;
                 box-shadow: $box-shadow;
                 position: relative;
-
+                border-left: .2rem solid $color-green;
                 display: flex;
                 justify-content: space-around;
 
@@ -96,7 +96,7 @@
                 &:hover {
                     box-shadow: 1px 8px 20px $color-secondary;
                     transition: box-shadow .6s linear;
-                    border-left: .4rem solid $color-green;
+                    //border-left: .4rem solid $color-green;
                     cursor: pointer;
                 }
             }
