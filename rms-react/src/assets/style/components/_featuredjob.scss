@@ -21,15 +21,10 @@
             grid-gap: 1rem;
 
             &__card {
-                transition: all .3s ease-in;
-                margin-top: -1px;
                 background: $color-white;
-                padding: 20px;
-                overflow: hidden;
                 @include flexCenter;
-                position: relative;
+                @include card;
                 box-shadow: $box-shadow;
-                cursor: pointer;
 
                 &--left {
                     width: 15%;
