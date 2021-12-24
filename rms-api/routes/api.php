@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -16,4 +17,8 @@ Route::group([
     Route::get('/verify/{token}/{email}', [AuthController::class, 'accountVerify']);
     Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
     Route::post('/update-password', [AuthController::class, 'updatePassword']);
+});
+
+Route::group(['middleware' => 'api'], function ($router) {
+    Route::resource('/categories', CategoryController::class);
 });
