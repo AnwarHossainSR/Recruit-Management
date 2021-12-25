@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Traits\ApiResponseWithHttpSTatus;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends Controller
 {
+    use ApiResponseWithHttpSTatus;
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['index']]);
     }
@@ -17,13 +20,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        try {
-            $data['categories'] = Category::latest()->paginate(8);
-            return response()->json(['status'=>true,'message' => 'success','data'=>$data]);
-        } catch (\Throwable $th) {
-            return response()->json(['status'=>false,'message' => $th->getMessage()]);
-        }
-
+        $data['categories'] = Category::latest()->paginate(8);
+        return $this->apiResponse('success',$data,Response::HTTP_OK,true);
     }
 
     /**
