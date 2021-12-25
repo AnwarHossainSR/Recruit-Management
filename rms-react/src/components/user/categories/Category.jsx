@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryItem from "./CategoryItem";
 
-const Category = () => {
+const Category = ({ categories }) => {
   return (
     <section className="category">
       <div className="category-container">
@@ -13,10 +13,16 @@ const Category = () => {
           </p>
         </div>
         <div className="category-container--card-wrapper">
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
+          {categories &&
+            categories.map((category, i) => (
+              <CategoryItem
+                key={i}
+                name={category.name}
+                icon={category.icon}
+                count={category.job_count}
+                slug={category.slug}
+              />
+            ))}
         </div>
       </div>
     </section>
