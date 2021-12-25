@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\PasswordResetJob;
 use App\Jobs\VerifyUserJobs;
 use App\Models\User;
+use App\Traits\ApiResponseWithHttpSTatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -13,9 +14,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use JWTAuth;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
+    use ApiResponseWithHttpSTatus;
     /**
      * Create a new AuthController instance.
      *
@@ -71,10 +74,7 @@ class AuthController extends Controller
             $details = ['name'=>$user->name, 'email'=>$user->email,'hashEmail'=>Crypt::encryptString($user->email),'token'=>$user->token];
             dispatch(new VerifyUserJobs($details));
         }
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
+        return $this->apiResponse('User successfully registered',$data=$user,Response::HTTP_OK,true);
     }
 
     /**
@@ -103,7 +103,7 @@ class AuthController extends Controller
      */
     public function logout() {
         auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        return $this->apiResponse('Sign out success',null,Response::HTTP_OK,true);
     }
 
     /**
@@ -121,7 +121,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function userProfile() {
-        return response()->json(auth()->user());
+        return $this->apiResponse('Sign out success',$data=auth()->user(),Response::HTTP_OK,true);
     }
 
     /**
@@ -132,18 +132,16 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     protected function createNewToken($token){
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => JWTAuth::factory()->getTTL() * 60,
-            'user' => auth()->user()
-        ]);
+        $data['token'] = $token;
+        $data['token_type'] = 'bearer';
+        $data['expires_in'] = JWTAuth::factory()->getTTL() * 60;
+        $data['user'] = auth()->user();
+        return $this->apiResponse('success',$data,Response::HTTP_OK,true);
     }
 
     public function forgotPassword(Request $request)
     {
-        try {
-            $user = User::where('email',$request->email)->first();
+        $user = User::where('email',$request->email)->first();
             if ($user) {
                 $token = Str::random(15);
                 $details = ['name'=>$user->name,'token'=>$token,'email'=>$user->email,'hashEmail'=>Crypt::encryptString($user->email)];
@@ -153,14 +151,11 @@ class AuthController extends Controller
                        'token'=>$token,
                        'created_at'=>now()
                    ]);
-                   return response()->json(['status'=>true,'message' => 'Password reset link has been sent to your email address']);
+                   return $this->apiResponse('Password reset link has been sent to your email address',null,Response::HTTP_OK,true);
                 }
             } else {
-                return response()->json(['status'=>false,'message' => 'Invalid email address']);
+                return $this->apiResponse('invalid email',null,Response::HTTP_OK,true);
             }
-        } catch (\Throwable $th) {
-            return response()->json(['status'=>false,'message' => $th->getMessage()]);
-        }
 
     }
 
@@ -179,14 +174,14 @@ class AuthController extends Controller
         $email = Crypt::decryptString($request->email);
         $user = DB::table('password_resets')->where([['email',$email],['token',$request->token]])->first();
         if(!$user){
-            return response()->json(['status'=>false,'message' => 'Invalid email address or token']);
+            return $this->apiResponse('Invalid email address or token',null,Response::HTTP_OK,true);
         }else{
             $data = User::where('email',$email)->first();
             $data->update([
                 'password'=> Hash::make($request->password)
             ]);
             DB::table('password_resets')->where('email',$email)->delete();
-            return response()->json(['status'=>true,'message' => 'Password updated !']);
+            return $this->apiResponse('Password updated !',null,Response::HTTP_OK,true);
         }
     }
 }
