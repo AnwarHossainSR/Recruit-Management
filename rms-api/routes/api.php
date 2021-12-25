@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -9,6 +10,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
+    //authentication
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -17,8 +19,11 @@ Route::group([
     Route::get('/verify/{token}/{email}', [AuthController::class, 'accountVerify']);
     Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
     Route::post('/update-password', [AuthController::class, 'updatePassword']);
+    //home
+
 });
 
 Route::group(['middleware' => 'api'], function ($router) {
     Route::resource('/categories', CategoryController::class);
 });
+Route::get('/home',[HomeController::class,'index']);
