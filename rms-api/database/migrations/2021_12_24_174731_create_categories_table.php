@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('icon')->default('http://localhost:8000/files/category/default.jpg');
+            $table->string('icon')->default('http://localhost:8000/files/category/default.png');
             $table->enum('status',['active','inactive'])->default('active');
             $table->timestamp('period_start')->default(now());
             $table->timestamp('period_end')->default(now());
