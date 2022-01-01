@@ -25,7 +25,7 @@ class MainJobFactory extends Factory
             'salary'=>$this->faker->numberBetween(30000,45000),
             'close_date'=>$this->faker->dateTimeBetween('+i month(','+2 month'),
             'cat_id'=>$this->faker->randomElement(Category::where('status','active')->pluck('id')->toArray()),
-            'icon'=>$this->faker->randomElement(['http://localhost:8000/files/jobs/default.png','http://localhost:8000/files/jobs/default2.png','http://localhost:8000/files/jobs/default3.png','http://localhost:8000/files/jobs/default4.png']),
+            'icon'=>$this->faker->randomElement(['http://localhost:8000/files/jobs/default.png','http://localhost:8000/files/jobs/default1.png','http://localhost:8000/files/jobs/default2.png','http://localhost:8000/files/jobs/default3.png']),
             'description'=>$this->faker->sentence(300),
             'status'=>$this->faker->randomElement(['active','inactive']),
             'type'=>$this->faker->randomElement(['full time','half time','part time']),
