@@ -1,0 +1,88 @@
+$colors:hsla(337, 84, 48, .75) hsla(160, 50, 48, .75) hsla(190, 61, 65, .75) hsla(41, 82, 52, .75);
+$size:3em;
+$thikness:.5em;
+
+//calculated variable
+$lat: calc(($size - $thikness)/2);
+$offset: calc($lat - $thikness);
+
+.loader {
+    position: relative;
+    width: $size;
+    height: $size;
+    transform: rotate(165deg);
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: $thikness;
+        height: $thikness;
+        border-radius: $thikness/2;
+        transform: translate(-50%, -50%);
+    }
+
+    &:before {
+        animation: before 2s infinite;
+    }
+
+    &:before {
+        animation: after 2s infinite;
+    }
+}
+
+@keyframes before {
+    0% {
+        width: $thikness;
+        box-shadow: $lat (-$offset) nth($colors, 1), (-$lat) $offset nth($colors, 3);
+    }
+
+    35% {
+        width: $size;
+        box-shadow: 0 (-$offset) nth($colors, 1), 0 $offset nth($colors, 3);
+    }
+
+    70% {
+        width: $thikness;
+        box-shadow: (-$lat)(-$offset) nth($colors, 1), (-$lat) $offset nth($colors, 3);
+    }
+
+    100% {
+        box-shadow: $lat (-$offset) nth($colors, 1), (-$lat) $offset nth($colors, 3);
+    }
+}
+
+@keyframes after {
+    0% {
+        height: $thikness;
+        box-shadow: $offset $lat nth($colors, 2), (-$offset) (-$lat) nth($colors, 4);
+    }
+
+    35% {
+        width: $size;
+        box-shadow: $offset 0 nth($colors, 2), (-$offset) 0 nth($colors, 4);
+    }
+
+    70% {
+        height: $thikness;
+        box-shadow: $offset $lat nth($colors, 2), (-$offset) (-$lat) nth($colors, 4);
+    }
+
+    100% {
+        box-shadow: $offset $lat nth($colors, 2), (-$offset) (-$lat) nth($colors, 4);
+    }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.loader {
+    position: absolute;
+    top: calc(50% - #{$size / 2});
+    left: calc(50% - #{$size / 2});
+}
