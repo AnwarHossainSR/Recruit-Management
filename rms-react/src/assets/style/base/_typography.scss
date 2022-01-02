@@ -1,0 +1,28 @@
+.half-time {
+    margin-top: 1rem;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #FFD8D2;
+    color: #FF7B66;
+    transition: all .3s ease-in-out;
+    font-weight: bolder;
+}
+
+.full-time {
+    margin-top: 1rem;
+    font-size: 14px;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: $color-white-light;
+    color: $color-green;
+    font-weight: bolder;
+    transition: all .3s ease-in-out;
+}

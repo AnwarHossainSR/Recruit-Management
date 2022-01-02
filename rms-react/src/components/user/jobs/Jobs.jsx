@@ -1,7 +1,7 @@
 import React from "react";
 import JobItem from "./JobItem";
 
-const Jobs = () => {
+const Jobs = ({ latest }) => {
   return (
     <div className="job">
       <div className="container">
@@ -13,10 +13,17 @@ const Jobs = () => {
           </p>
         </div>
         <div className="job__wrapper">
-          <JobItem />
-          <JobItem />
-          <JobItem />
-          <JobItem />
+          {latest &&
+            latest.map((job, i) => (
+              <JobItem
+                key={i}
+                title={job.title}
+                type={job.type}
+                company={job.company}
+                slug={job.slug}
+                icon={job.icon}
+              />
+            ))}
         </div>
       </div>
     </div>
