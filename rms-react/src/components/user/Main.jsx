@@ -19,12 +19,13 @@ const Main = () => {
     };
     fetchData();
   }, []);
+  console.log(data && data);
   return (
     <>
       <Header />
       <Category categories={data.categories} />
-      <FeaturedJob />
-      <Jobs />
+      <FeaturedJob featured={data.featured_job} />
+      <Jobs latest={data.latest} />
       <Footer />
     </>
   );

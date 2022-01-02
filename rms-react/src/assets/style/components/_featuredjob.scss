@@ -37,9 +37,9 @@
                     text-align: center;
                     margin-left: 3rem;
 
-                    &h1 {
+                    h1 {
                         margin-top: 1.2rem;
-                        color: $color-secondary;
+                        color: $color-dark !important;
                     }
 
                     &__status {
