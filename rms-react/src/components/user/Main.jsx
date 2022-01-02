@@ -5,28 +5,39 @@ import FeaturedJob from "./featured-jobs/FeaturedJob";
 import Jobs from "./jobs/Jobs";
 import Footer from "./footer/Footer";
 import { fetchApiData } from "../../api/api";
+import Loader from "../../services/Loader";
 
 const Main = () => {
+  const [loader, setLoader] = useState(true);
   const [data, setdata] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchApiData(`home`);
-      if (response.status === true) {
-        setdata(response.data);
-      } else {
-        console.log(response);
-      }
-    };
-    fetchData();
+    setTimeout(() => {
+      const fetchData = async () => {
+        const response = await fetchApiData(`home`);
+        if (response.status === true) {
+          setdata(response.data);
+        } else {
+          console.log(response);
+        }
+        setLoader(false);
+      };
+      fetchData();
+    }, 1000);
   }, []);
   console.log(data && data);
   return (
     <>
-      <Header />
-      <Category categories={data.categories} />
-      <FeaturedJob featured={data.featured_job} />
-      <Jobs latest={data.latest} />
-      <Footer />
+      {loader ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <Category categories={data.categories} />
+          <FeaturedJob featured={data.featured_job} />
+          <Jobs latest={data.latest} />
+          <Footer />
+        </>
+      )}
     </>
   );
 };
