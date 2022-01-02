@@ -1,0 +1,58 @@
+.header {
+    width: 100vw;
+    height: auto;
+    padding-bottom: 3rem;
+    background: #f0F0F0 !important;
+
+    .container {
+        @include container;
+
+        .hero_section {
+            padding-top: 3rem;
+
+            .title {
+                text-align: center;
+            }
+
+            .search_nav {
+                width: 60%;
+                height: 76px;
+                padding: 16px 0;
+                border-radius: 6px;
+                margin-top: 35px;
+                background: $bg-color;
+                margin: auto;
+                @include flexVertical;
+
+                button {
+                    margin-left: 2rem;
+                    font-size: 22px;
+                    line-height: 14px;
+                    display: inline-block;
+                    position: relative;
+                    outline: none;
+                    background: $color-green;
+                    color: $color-white;
+                    cursor: pointer;
+                    border: none;
+                    text-align: center;
+                    overflow: hidden;
+                    padding: 11px 12px;
+                    border-radius: 4px;
+                    transition: .3s;
+                    z-index: 1;
+                }
+
+                .search {
+                    width: 50%;
+                    height: 46px;
+                    padding: 0 20px;
+                    font-size: 14px;
+                    border-radius: 30px;
+                    border: 1px solid #ececec;
+                    transition: all .3s;
+                }
+            }
+        }
+    }
+}
