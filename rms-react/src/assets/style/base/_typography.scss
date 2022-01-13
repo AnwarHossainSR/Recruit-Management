@@ -26,3 +26,32 @@
     font-weight: bolder;
     transition: all .3s ease-in-out;
 }
+
+.button {
+    margin-top: 2rem;
+    padding: 3rem;
+    background: $color-green;
+    font-size: 14px;
+    border-radius: 302px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: $color-white;
+    border: none;
+    text-transform: uppercase;
+    transform: all .3s ease-in-out;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 30px;
+}
+
+.button:hover {
+    color: $color-white;
+    animation: pulse 2s;
+    box-shadow: $box-shadow;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0#9dd4a5;
+    }
+}

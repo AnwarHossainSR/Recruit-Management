@@ -56,3 +56,15 @@
         }
     }
 }
+
+.featured_job {
+    background: $color-white !important;
+    padding: 5rem;
+
+    .container {
+        .load-data {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
