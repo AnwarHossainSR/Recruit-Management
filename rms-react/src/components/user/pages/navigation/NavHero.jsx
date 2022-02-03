@@ -5,10 +5,13 @@ const NavHero = ({ hero }) => {
   return (
     <div className="hero_section">
       <>
-        <div className="title">Find Job</div>
-        <div className="search_nav">
-          <Search />
-        </div>
+        {hero === "jobs" && <div className="title">Find Job</div>}
+        {hero === "jobs" && (
+          <div className="search_nav">
+            <Search />
+          </div>
+        )}
+        {hero === "contact" && <h1 className="title">Contact Us</h1>}
       </>
     </div>
   );

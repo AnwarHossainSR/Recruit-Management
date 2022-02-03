@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logo.svg";
 
-const Nav = () => {
+const Nav = ({ cmp }) => {
   return (
     <div className="home-header-container-nav">
       <div className="home-header-container-nav-left">
@@ -11,13 +11,50 @@ const Nav = () => {
         </div>
       </div>
       <div className="home-header-container-nav-right">
-        <Link className="home-header-container-nav-right--active-menu" to="/">
+        <Link
+          className={`${
+            cmp === "home" ? "home-header-container-nav-right--active-menu" : ""
+          }`}
+          to="/"
+        >
           Home
         </Link>
-        <Link to="/jobs">Browse Job</Link>
-        <Link to="/blogs">Blog</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/login">Login</Link>
+        <Link
+          className={`${
+            cmp === "jobs" ? "home-header-container-nav-right--active-menu" : ""
+          }`}
+          to="/jobs"
+        >
+          Browse Job
+        </Link>
+        <Link
+          className={`${
+            cmp === "blogs"
+              ? "home-header-container-nav-right--active-menu"
+              : ""
+          }`}
+          to="/blogs"
+        >
+          Blog
+        </Link>
+        <Link
+          className={`${
+            cmp === "contact"
+              ? "home-header-container-nav-right--active-menu"
+              : ""
+          }`}
+          to="/contact"
+        >
+          Contact
+        </Link>
+        <Link
+          className={`${
+            cmp === "auth" ? "home-header-container-nav-right--active-menu" : ""
+          }`}
+          to="/login"
+        >
+          Login
+        </Link>
       </div>
     </div>
   );

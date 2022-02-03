@@ -14,7 +14,7 @@ const Main = () => {
     setTimeout(() => {
       const fetchData = async () => {
         const response = await fetchApiData(`home`);
-        if (response&&response.status&&response.status === true) {
+        if (response && response.status && response.status === true) {
           setdata(response.data);
         } else {
           console.log(response);
@@ -22,7 +22,7 @@ const Main = () => {
         setLoader(false);
       };
       fetchData();
-    }, 1000);
+    }, 300);
   }, []);
   console.log(data && data);
   return (
@@ -31,7 +31,7 @@ const Main = () => {
         <Loader />
       ) : (
         <>
-          <Header />
+          <Header cmp="home" />
           <Category categories={data.categories} />
           <FeaturedJob featured={data.featured_job} />
           <Jobs latest={data.latest} />
