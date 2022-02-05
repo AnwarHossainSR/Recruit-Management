@@ -1,0 +1,40 @@
+.details_info {
+    padding: 3rem;
+    background: $color-white;
+
+    .container {
+        @include container;
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+
+            .left {
+                width: 730px;
+                height: 100%;
+                padding: 15px 20px;
+                box-shadow: $box-shadow-2;
+
+                h1,
+                p,
+                h2,
+                button {
+                    margin-top: 1rem;
+                    color: #191c1e;
+                }
+            }
+
+            .right {
+                width: 350px;
+                height: 100%;
+                padding: 15px 20px;
+                box-shadow: $box-shadow-2;
+
+                h1 {
+                    margin-top: 1rem;
+                    color: #191c1e;
+                }
+            }
+        }
+    }
+}

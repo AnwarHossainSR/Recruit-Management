@@ -54,6 +54,58 @@
                     transition: all .3s;
                 }
             }
+
+            .hero-data {
+                display: flex;
+                justify-content: space-between;
+
+                .left {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .icon {
+                        img {
+                            width: 150px;
+                            height: 150px;
+                        }
+                    }
+
+                    .details {
+                        margin-left: 1rem;
+
+                        h1 {
+                            color: #6c757d;
+                        }
+
+                        .posted {
+                            margin-top: 0.6rem;
+
+                            .country {
+                                padding-bottom: .5rem;
+                            }
+
+                            .country span,
+                            .date span,
+                            .date i,
+                            .country i {
+                                margin-left: 0.8rem;
+                                color: #6c757d;
+                            }
+                        }
+                    }
+
+                }
+
+                .right {
+                    .amount {
+                        background: $color-green;
+                        color: $color-white;
+                        padding: 1rem;
+                        border-radius: 1rem;
+                    }
+                }
+
+            }
         }
     }
 }
