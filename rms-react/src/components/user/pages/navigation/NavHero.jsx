@@ -12,6 +12,7 @@ const NavHero = ({ hero }) => {
           </div>
         )}
         {hero === "contact" && <h1 className="title">Contact Us</h1>}
+        {hero === "Login" && <h1 className="title">{hero}</h1>}
       </>
     </div>
   );

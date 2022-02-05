@@ -1,0 +1,50 @@
+.login {
+    .container {
+        @include container;
+
+        .auth_div {
+            @include flexVertical;
+            padding: 3rem 0;
+
+            .form {
+                width: 445px;
+                height: auto;
+                display: grid;
+                grid-column: 1;
+                text-align: center;
+                padding: 2rem;
+                font-size: 12px;
+                border-radius: 30px;
+                border: 1px solid $form-control-color;
+                transform: all .3s;
+            }
+
+            .form-control {
+                @include formControl;
+            }
+
+            input {
+                margin-top: 1rem;
+            }
+
+            .forgot {
+                margin-top: 2rem;
+                color: $color-green;
+                @include flexAround;
+            }
+
+            .social {
+                img {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    margin-top: 1rem;
+                    cursor: pointer;
+                }
+
+                img+img {
+                    margin-left: 1.5rem;
+                }
+            }
+        }
+    }
+}

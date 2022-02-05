@@ -24,7 +24,6 @@ const Main = () => {
       fetchData();
     }, 300);
   }, []);
-  console.log(data && data);
   return (
     <>
       {loader ? (
