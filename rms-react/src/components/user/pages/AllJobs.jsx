@@ -4,7 +4,7 @@ import Footer from "../footer/Footer";
 import JobItemSection from "./JobItemSection";
 import NavBar from "./navigation/NavBar";
 
-const AllJobs = ({ hero }) => {
+const AllJobs = () => {
   const [loader, setloader] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -15,7 +15,7 @@ const AllJobs = ({ hero }) => {
     <>
       {(loader && <Loader />) || (
         <>
-          <NavBar hero={hero} cmp="jobs" />
+          <NavBar hero="jobs" cmp="jobs" />
           <JobItemSection />
           <Footer />
         </>
