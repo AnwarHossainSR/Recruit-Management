@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Loader from "../../../../services/Loader";
 import Footer from "../../footer/Footer";
 import NavBar from "../navigation/NavBar";
-import LoginItem from "./LoginItem";
-const Login = () => {
+import SignUpItem from "./SignUpItem";
+
+const SignUp = () => {
   const [loader, setloader] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -16,8 +17,8 @@ const Login = () => {
         <Loader />
       ) : (
         <>
-          <NavBar hero="Login" cmp="auth" />
-          <LoginItem />
+          <NavBar hero="Sign Up" cmp="auth" />
+          <SignUpItem />
           <Footer />
         </>
       )}
@@ -25,4 +26,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

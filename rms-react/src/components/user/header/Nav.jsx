@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo.svg";
 
 const Nav = ({ cmp }) => {
+  const location = useLocation();
   return (
     <div className="home-header-container-nav">
       <div className="home-header-container-nav-left">
@@ -51,9 +52,15 @@ const Nav = ({ cmp }) => {
           className={`${
             cmp === "auth" ? "home-header-container-nav-right--active-menu" : ""
           }`}
-          to="/login"
+          to={`${
+            (location.pathname === "/sign-up" && "/sign-up") ||
+            (location.pathname === "/forgot-password" && "/forgot-password") ||
+            "/login"
+          }`}
         >
-          Login
+          {(location.pathname === "/sign-up" && "Sign Up") ||
+            (location.pathname === "/forgot-password" && "Reset Password") ||
+            "Login"}
         </Link>
       </div>
     </div>

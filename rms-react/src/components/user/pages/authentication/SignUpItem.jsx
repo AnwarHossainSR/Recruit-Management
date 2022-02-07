@@ -1,15 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import github from "../../../../assets/images/github.svg";
-import google from "../../../../assets/images/google.svg";
 
-const LoginItem = () => {
+const SignUpItem = () => {
+  
   return (
     <section className="login">
       <div className="container">
         <div className="auth_div">
           <form>
             <div className="form">
+              <div>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  placeholder="user name"
+                />
+              </div>
               <div>
                 <input
                   type="email"
@@ -26,19 +33,22 @@ const LoginItem = () => {
                   placeholder="user password"
                 />
               </div>
+              <div>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="confirm_password"
+                  placeholder="confirm password"
+                />
+              </div>
               <button className="button">
                 <div>
                   {/* <img src="" alt="" height="15px" width="15px" /> */}
-                  <span>Login</span>
+                  <span>Sign Up</span>
                 </div>
               </button>
               <div className="forgot">
-                <Link to="/sign-up">Dont't have any account ?</Link>
-                <Link to="/forgot-password">forgot your password ?</Link>
-              </div>
-              <div className="social">
-                <img src={github} alt="github logo" />
-                <img src={google} alt="google logo" />
+                <Link to="/login">already have an account ?</Link>
               </div>
             </div>
           </form>
@@ -48,4 +58,4 @@ const LoginItem = () => {
   );
 };
 
-export default LoginItem;
+export default SignUpItem;

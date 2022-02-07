@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../../../services/Loader";
 import Footer from "../footer/Footer";
-import JobItemSection from "./JobItemSection";
-import NavBar from "./navigation/NavBar";
-
-const AllJobs = () => {
+import NavBar from "../pages/navigation/NavBar";
+import JobDetailsItem from "./JobDetailsItem";
+const JobDetails = () => {
   const [loader, setloader] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -13,10 +12,12 @@ const AllJobs = () => {
   }, []);
   return (
     <>
-      {(loader && <Loader />) || (
+      {loader ? (
+        <Loader />
+      ) : (
         <>
-          <NavBar hero="jobs" cmp="jobs" />
-          <JobItemSection />
+          <NavBar cmp="jobs" />
+          <JobDetailsItem />
           <Footer />
         </>
       )}
@@ -24,4 +25,4 @@ const AllJobs = () => {
   );
 };
 
-export default AllJobs;
+export default JobDetails;

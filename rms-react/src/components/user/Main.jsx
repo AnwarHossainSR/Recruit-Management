@@ -22,8 +22,8 @@ const Main = () => {
         setLoader(false);
       };
       fetchData();
-    }, 300);
-  }, []);
+    }, 100);
+  }, [loader]);
   return (
     <>
       {loader ? (
