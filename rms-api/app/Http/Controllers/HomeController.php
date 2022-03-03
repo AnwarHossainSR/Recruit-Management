@@ -18,4 +18,16 @@ class HomeController extends Controller
         $data['latest'] = MainJob::where('status','active')->latest('created_at')->get()->random(6);
         return $this->apiResponse('success',$data,Response::HTTP_OK,true);
     }
+    public function getALlJobs()
+    {
+        $data['job'] = MainJob::where([['status','active']])->get();
+        return $this->apiResponse('success',$data,Response::HTTP_OK,true);
+    }
+
+    public function getSingleJobDetails($slug)
+    {
+        $data['job'] = MainJob::where([['slug',$slug]])->with('category')->first();
+        $data['similar'] = MainJob::where([['status','active'],['cat_id',$data['job']->cat_id]])->get()->random(3);
+        return $this->apiResponse('success',$data,Response::HTTP_OK,true);
+    }
 }
