@@ -26,4 +26,11 @@ Route::group([
 Route::group(['middleware' => 'api'], function ($router) {
     Route::resource('/categories', CategoryController::class);
 });
+
+//without resource
+
+//home
 Route::get('/home',[HomeController::class,'index']);
+Route::get('/home/browse',[HomeController::class,'getALlJobs']);
+
+Route::get('/home/{slug}',[HomeController::class,'getSingleJobDetails']);
